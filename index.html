@@ -177,8 +177,9 @@
         /* ===== BODY CONTENT ===== */
         .doc-body {
             flex-grow: 1;
-            display: flex;
-            flex-direction: column;
+            display: block;
+            position: relative;
+            min-height: 220mm;
         }
 
         .doc-content {
@@ -203,7 +204,6 @@
             margin: 1mm 0;
         }
 
-        /* underlined labels like PDF */
         .label-underline {
             text-decoration: underline;
             font-weight: bold;
@@ -222,22 +222,16 @@
             line-height: 1.8;
         }
 
-        /* ===== BOTTOM NOTE ===== */
-        .exemplaire-note {
-    margin-top: 5mm;
-    font-size: 9pt;
-    font-weight: bold;
-    line-height: 1.5;
-}
-
-        /* ===== CONTACT INFO ===== */
+        /* ===== CONTACT INFO — position absolute fawq l-note ===== */
         .doc-contact-info {
-    margin-top: auto;
-    padding-top: 10mm;
-    font-size: 8.5pt;
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-}
+            position: absolute;
+            bottom: 18mm;
+            left: 0;
+            right: 0;
+            font-size: 8.5pt;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
 
         .doc-contact-info p {
             margin-bottom: 1mm;
@@ -250,6 +244,17 @@
 
         .contact-center {
             text-align: center;
+        }
+
+        /* ===== NOTE — position absolute taḥt l-contact ===== */
+        .exemplaire-note {
+            position: absolute;
+            bottom: 5mm;
+            left: 0;
+            right: 0;
+            font-size: 9pt;
+            font-weight: bold;
+            line-height: 1.5;
         }
 
         /* ===== PRINT ===== */
@@ -381,6 +386,8 @@
 
             <!-- BODY -->
             <div class="doc-body">
+
+                <!-- CONTENT -->
                 <div class="doc-content">
                     <p>Le Directeur de l'Ecole Supérieure de Technologie – Beni Mellal atteste que l'étudiant(e):</p>
                     <p><span id="view-fullname" class="field-value">&nbsp;</span></p>
@@ -400,21 +407,25 @@
                     </div>
                 </div>
 
-                
-
-                <!-- CONTACT -->
-<div class="doc-contact-info">
-    <p><span class="contact-bold">Adresse :</span> Ecole Supérieure de Technologie de Beni Mellal -Cité Universitaire M'ghila – Beni Mellal – BP : <strong>23000</strong></p>
-    <p class="contact-center"><span class="contact-bold">Tel :</span> +(212) 523-484-168 &nbsp;<strong>/</strong>&nbsp; <span class="contact-bold">Fax :</span> +(212) 523-481-772</p>
+                <!-- BOTTOM SECTION -->
+<div style="position: absolute; bottom: 5mm; left: 0; right: 0;">
+    <p style="font-size: 9pt; font-weight: bold; line-height: 1.5;">
+        * Le présent document n'est délivré qu'en un seul exemplaire,<br>
+        Il appartient à l'étudiant d'en faire des photocopies certifiées conformes.
+    </p>
+    <p style="font-size: 8.5pt; font-family: Arial, sans-serif; margin-bottom: 2mm;">
+        <span style="font-weight: bold; text-decoration: underline;">Adresse :</span> 
+        Ecole Supérieure de Technologie de Beni Mellal -Cité Universitaire M'ghila – Beni Mellal – BP : <strong>23000</strong>
+    </p>
+    <p style="font-size: 8.5pt; font-family: Arial, sans-serif; text-align: center; margin-bottom: 4mm;">
+        <span style="font-weight: bold; text-decoration: underline;">Tel :</span> +(212) 523-484-168 
+        &nbsp;<strong>/</strong>&nbsp; 
+        <span style="font-weight: bold; text-decoration: underline;">Fax :</span> +(212) 523-481-772
+    </p>
+    
 </div>
 
-<!-- NOTE -->
-<div class="exemplaire-note">
-    * Le présent document n'est délivré qu'en un seul exemplaire,<br>
-    Il appartient à l'étudiant d'en faire des photocopies certifiées conformes.
-</div>
             </div>
-
         </div>
     </main>
 </div>
@@ -446,20 +457,18 @@
         const fil    = document.getElementById('filiere').value;
         const annee  = document.getElementById('annee').value;
 
-        document.getElementById('view-fullname').textContent     = (nom || prenom) ? `${nom} ${prenom}`.trim() : '\u00A0';
-        document.getElementById('view-cin').textContent          = cin  || '....';
-        document.getElementById('view-cne').textContent          = cne  || '....';
-        document.getElementById('view-date').textContent         = formatDate(date);
-        document.getElementById('view-lieu').textContent         = lieu || '....';
-        document.getElementById('view-diplome').textContent      = fil  ? `DUT ${fil}` : 'DUT ....';
+        document.getElementById('view-fullname').textContent      = (nom || prenom) ? `${nom} ${prenom}`.trim() : '\u00A0';
+        document.getElementById('view-cin').textContent           = cin  || '....';
+        document.getElementById('view-cne').textContent           = cne  || '....';
+        document.getElementById('view-date').textContent          = formatDate(date);
+        document.getElementById('view-lieu').textContent          = lieu || '....';
+        document.getElementById('view-diplome').textContent       = fil  ? `DUT ${fil}` : 'DUT ....';
         document.getElementById('view-annee-filiere').textContent = fil  ? `${annee} ${filieres[fil]}` : `${annee} .....`;
     }
 
-    // Listen to all inputs
     ['nom','prenom','cin','cne','date_naissance','lieu_naissance','filiere','annee']
         .forEach(id => document.getElementById(id).addEventListener('input', updatePreview));
 
-    // Today's date in footer
     const t = new Date();
     document.getElementById('today-date').textContent =
         `${String(t.getDate()).padStart(2,'0')}/${String(t.getMonth()+1).padStart(2,'0')}/${t.getFullYear()}`;
