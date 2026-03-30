@@ -7,7 +7,6 @@
     <style>
         :root {
             --primary-color: #2c3e50;
-            --secondary-color: #34495e;
             --accent-color: #3498db;
             --bg-color: #f4f7f6;
             --form-bg: #ffffff;
@@ -16,7 +15,7 @@
 
         * {
             box-sizing: border-box;
-            margin:0;
+            margin: 0;
             padding: 0;
         }
 
@@ -29,18 +28,18 @@
             overflow: hidden;
         }
 
-        /* Layout */
         .app-container {
             display: flex;
             width: 100%;
             height: 100%;
         }
 
-        /* Form Sidebar */
+        /* ===== FORM SIDEBAR ===== */
         .form-section {
-            width: 400px;
+            width: 360px;
+            min-width: 360px;
             background-color: var(--form-bg);
-            padding: 2rem;
+            padding: 1.5rem;
             box-shadow: 2px 0 10px rgba(0,0,0,0.1);
             overflow-y: auto;
             z-index: 10;
@@ -49,55 +48,58 @@
         .form-section h2 {
             margin-bottom: 1rem;
             color: var(--primary-color);
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             border-bottom: 2px solid var(--accent-color);
             padding-bottom: 0.5rem;
         }
 
         .form-group {
-            margin-bottom: 1.2rem;
+            margin-bottom: 0.9rem;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.3rem;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.82rem;
+            color: #555;
         }
 
-        .form-group input, .form-group select {
+        .form-group input,
+        .form-group select {
             width: 100%;
-            padding: 0.7rem;
+            padding: 0.55rem 0.7rem;
             border: 1px solid #ddd;
             border-radius: 4px;
-            font-size: 1rem;
+            font-size: 0.92rem;
             transition: border-color 0.3s;
         }
 
-        .form-group input:focus, .form-group select:focus {
+        .form-group input:focus,
+        .form-group select:focus {
             outline: none;
             border-color: var(--accent-color);
         }
 
         .btn-print {
             width: 100%;
-            padding: 1rem;
+            padding: 0.85rem;
             background-color: var(--accent-color);
             color: white;
             border: none;
             border-radius: 4px;
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: bold;
             cursor: pointer;
             transition: background-color 0.3s;
-            margin-top: 1rem;
+            margin-top: 0.8rem;
         }
 
         .btn-print:hover {
             background-color: #2980b9;
         }
 
-        /* Preview Main Area */
+        /* ===== PREVIEW AREA ===== */
         .preview-section {
             flex-grow: 1;
             padding: 2rem;
@@ -108,83 +110,85 @@
             background-color: #525659;
         }
 
-        /* Document Styling */
+        /* ===== A4 DOCUMENT ===== */
         .document {
             width: 210mm;
             min-height: 297mm;
             background-color: white;
-            padding: 10mm 25mm;
-            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+            padding: 15mm 20mm 20mm 20mm;
+            box-shadow: 0 0 20px rgba(0,0,0,0.4);
             font-family: 'Times New Roman', Times, serif;
             color: black;
             position: relative;
+            display: flex;
+            flex-direction: column;
         }
 
+        /* ===== HEADER ===== */
         .doc-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-bottom: 0rem;
+            margin-bottom: 3mm;
         }
 
         .header-logo {
-            max-width: 200px;
-            max-height: 107px;
+            width: 28mm;
+            height: 28mm;
             object-fit: contain;
         }
 
         .header-text {
             text-align: center;
             flex-grow: 1;
-            line-height: 1.2;
-            
-        }
-
-        .header-text p {
-            margin-bottom: 8px;
-            font-size: 10pt; /* Default for top lines */
-        }
-
-        .header-ministere {
-            font-size: 12pt;
+            padding: 0 5mm;
+            line-height: 1.4;
         }
 
         .header-univ-fr {
-            margin-top: 30px;
-            font-size: 12pt !important;
+            font-size: 11pt;
             font-weight: bold;
+            margin-bottom: 1mm;
         }
 
         .header-univ-ar {
-            font-size: 10pt !important;
+            font-size: 10pt;
             font-weight: bold;
+            margin-bottom: 1mm;
+            direction: rtl;
         }
 
-        .doc-title {
-            text-align: center;
-            margin: 3rem 0;
-        }
-        
-
-        .doc-title h4 {
-            font-size: 17pt;
+        .doc-title-inline {
+            font-size: 12pt;
             font-weight: bold;
             text-decoration: underline;
             text-transform: uppercase;
-            display: inline-block;
-            padding-bottom: 2px;
+            margin-top: 4mm;
+            display: block;
         }
-        
+
+        /* ===== DIVIDER ===== */
+        .doc-divider {
+            border: none;
+            border-top: 1.5px solid black;
+            margin: 2mm 0 0 0;
+        }
+
+        /* ===== BODY CONTENT ===== */
+        .doc-body {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
 
         .doc-content {
-            font-size: 10pt;
-            line-height: 1.6;
-            text-align: justify;
-            margin-top: 100px;
+            font-size: 11pt;
+            line-height: 1.9;
+            margin-top: 30mm;
         }
 
         .doc-content p {
-            margin-bottom: 0.5rem;
+            margin-bottom: 1mm;
         }
 
         .field-value {
@@ -192,70 +196,62 @@
         }
 
         #view-fullname {
-            display: inline-block;
-            width: 100%;
-           
-            font-size: 10pt;
+            font-size: 11pt;
+            font-weight: bold;
             text-transform: uppercase;
-            
+            display: block;
+            margin: 1mm 0;
         }
 
+        /* underlined labels like PDF */
+        .label-underline {
+            text-decoration: underline;
+            font-weight: bold;
+        }
+
+        /* ===== FOOTER SIGNATURE ===== */
         .doc-footer {
-            margin-top: 5rem;
-            margin-bottom: 10rem;
+            margin-top: 20mm;
             display: flex;
             justify-content: flex-end;
-            font-size: 16pt;
         }
 
         .footer-right {
             text-align: center;
-            width: 400px;
             font-size: 11pt;
-
+            line-height: 1.8;
         }
 
-        .footer-date {
-            margin-bottom: 1rem;
-
-        }
-
-        .footer-signature {
-            /*font-weight: ;  Removed bold */
-           
-            
-        }
-
+        /* ===== BOTTOM NOTE ===== */
         .exemplaire-note {
-            
-           
+            margin-top: 20mm;
             font-size: 9pt;
-            font-style: normal;
             font-weight: bold;
-            line-height: 1.4;
+            line-height: 1.5;
         }
 
+        /* ===== CONTACT INFO ===== */
         .doc-contact-info {
-            position: absolute;
-            bottom: 25mm;
-            
-            
-            text-align: center;
-            font-size: 8pt;
-            border-top: none;
+            margin-top: 8mm;
+            font-size: 8.5pt;
             font-family: Arial, sans-serif;
-            font-style: normal;
+            line-height: 1.6;
+        }
+
+        .doc-contact-info p {
+            margin-bottom: 1mm;
         }
 
         .contact-bold {
             font-weight: bold;
+            text-decoration: underline;
         }
 
-        .doc-contact-info p {
-            margin-bottom: 20px;
+        .contact-center {
+            text-align: center;
         }
 
-        /* Print Specifics */
+        /* ===== PRINT ===== */
         @media print {
             body {
                 background-color: white;
@@ -264,7 +260,7 @@
             }
 
             .form-section {
-                display: none;
+                display: none !important;
             }
 
             .preview-section {
@@ -276,9 +272,10 @@
 
             .document {
                 box-shadow: none;
-                width: 100%;
+                width: 210mm;
+                min-height: 297mm;
                 margin: 0;
-                padding: 15mm 20mm;
+                padding: 15mm 20mm 20mm 20mm;
             }
 
             @page {
@@ -287,7 +284,7 @@
             }
         }
 
-        /* Responsive Sidebar */
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 900px) {
             body {
                 flex-direction: column;
@@ -296,8 +293,8 @@
             }
             .form-section {
                 width: 100%;
+                min-width: unset;
                 height: auto;
-                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             }
             .preview-section {
                 padding: 1rem;
@@ -306,201 +303,165 @@
             .document {
                 width: 100%;
                 min-height: auto;
-                padding: 15mm;
+                padding: 10mm;
             }
         }
     </style>
 </head>
 <body>
-    <div class="app-container">
-        <!-- Sidebar Form -->
-        <aside class="form-section">
-            <h2>Informations Étudiant</h2>
-            <form id="attestationForm">
-                <div class="form-group">
-                    <label for="nom">Nom</label>
-                    <input type="text" id="nom" placeholder="Ex: EL OMARI" required>
-                </div>
-                <div class="form-group">
-                    <label for="prenom">Prénom</label>
-                    <input type="text" id="prenom" placeholder="Ex: Amine" required>
-                </div>
-                <div class="form-group">
-                    <label for="cin">CIN (Carte d'identité nationale)</label>
-                    <input type="text" id="cin" placeholder="Ex: I756432" required>
-                </div>
-                <div class="form-group">
-                    <label for="cne">CNE (Code national de l'étudiant)</label>
-                    <input type="text" id="cne" placeholder="Ex: G135467890" required>
-                </div>
-                <div class="form-group">
-                    <label for="date_naissance">Date de naissance</label>
-                    <input type="date" id="date_naissance" required>
-                </div>
-                <div class="form-group">
-                    <label for="lieu_naissance">Lieu de naissance</label>
-                    <input type="text" id="lieu_naissance" placeholder="Ex: Beni Mellal" required>
-                </div>
-                <div class="form-group">
-                    <label for="filiere">Filière</label>
-                    <select id="filiere" required>
-                        <option value="">-- Sélectionner une filière --</option>
-                        <option value="GMA">GMA - Génie Mécanique et Automatismes</option>
-                        <option value="GE">GE - Génie Electrique</option>
-                        <option value="GI">GI - Génie Informatique</option>
-                        <option value="TI">TI - Techniques d'Informatique</option>
-                        <option value="TC">TC - Techniques de Commerce</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="annee">Année</label>
-                    <select id="annee" required>
-                        <option value="1ère année">1ère année</option>
-                        <option value="2ème année" selected>2ème année</option>
-                    </select>
-                </div>
-                <button type="button" class="btn-print" onclick="window.print()">Imprimer</button>
-            </form>
-        </aside>
+<div class="app-container">
 
-        <!-- Preview Area -->
-        <main class="preview-section">
-            <div class="document" id="printableArea">
-                <div class="doc-header">
-                    <img src="public/logo 1.jfif" alt="Logo USMS" class="header-logo">
-                    <div class="header-text">
-                        
-                        <p class="header-univ-fr">Université Sultan Moulay Slimane- Beni Mellal</p>
-                        <p class="header-univ-ar">جامعة السلطان مولاي سليمان ـ بني ملال</p>
-                        <p class="header-univ-ar">المدرسة العليا للتكنولوجيا ـ بني ملال</p>
-                        <br>
-                       
-                    <h5 class="titre"><u>ATTESTATION DE SCOLARITE</u></h5><br>
-            
+    <!-- ===== SIDEBAR FORM ===== -->
+    <aside class="form-section">
+        <h2>Informations Étudiant</h2>
+        <div class="form-group">
+            <label for="nom">Nom</label>
+            <input type="text" id="nom" placeholder="Ex: EL OMARI">
+        </div>
+        <div class="form-group">
+            <label for="prenom">Prénom</label>
+            <input type="text" id="prenom" placeholder="Ex: Amine">
+        </div>
+        <div class="form-group">
+            <label for="cin">CIN</label>
+            <input type="text" id="cin" placeholder="Ex: I756432">
+        </div>
+        <div class="form-group">
+            <label for="cne">CNE</label>
+            <input type="text" id="cne" placeholder="Ex: G135467890">
+        </div>
+        <div class="form-group">
+            <label for="date_naissance">Date de naissance</label>
+            <input type="date" id="date_naissance">
+        </div>
+        <div class="form-group">
+            <label for="lieu_naissance">Lieu de naissance</label>
+            <input type="text" id="lieu_naissance" placeholder="Ex: Beni Mellal">
+        </div>
+        <div class="form-group">
+            <label for="filiere">Filière</label>
+            <select id="filiere">
+                <option value="">-- Sélectionner --</option>
+                <option value="GMA">GMA - Génie Mécanique et Automatismes</option>
+                <option value="GE">GE - Génie Electrique</option>
+                <option value="GI">GI - Génie Informatique</option>
+                <option value="TI">TI - Techniques d'Informatique</option>
+                <option value="TC">TC - Techniques de Commerce</option>
+                <option value="GEII">GEII - Génie Electrique et Informatique Industrielle</option>
+                <option value="MP">MP - Management des Projets</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="annee">Année</label>
+            <select id="annee">
+                <option value="1ère année">1ère année</option>
+                <option value="2ème année" selected>2ème année</option>
+            </select>
+        </div>
+        <button class="btn-print" onclick="window.print()">🖨️ Imprimer</button>
+    </aside>
 
-               
-                    </div>
-                    <img src="public/logo 2.png" alt="Logo ESTBM" class="header-logo">
+    <!-- ===== PREVIEW ===== -->
+    <main class="preview-section">
+        <div class="document" id="printableArea">
+
+            <!-- HEADER -->
+            <div class="doc-header">
+                <img src="public/logo 1.jfif" alt="Logo USMS" class="header-logo">
+                <div class="header-text">
+                    <p class="header-univ-fr">Université Sultan Moulay Slimane- Beni Mellal</p>
+                    <p class="header-univ-ar">جامعة السلطان مولاي سليمان ـ بني ملال</p>
+                    <p class="header-univ-ar">المدرسة العليا للتكنولوجيا ـ بني ملال</p>
+                    <span class="doc-title-inline">Attestation de Scolarité :</span>
                 </div>
-                     <hr>
+                <img src="public/logo 2.png" alt="Logo EST" class="header-logo">
+            </div>
+            <hr class="doc-divider">
 
-
-                
-            
-
+            <!-- BODY -->
+            <div class="doc-body">
                 <div class="doc-content">
                     <p>Le Directeur de l'Ecole Supérieure de Technologie – Beni Mellal atteste que l'étudiant(e):</p>
-                    <p>
-                        <span id="view-fullname" class="field-value">[NOM PRENOM]</span>
-                    </p>
-                    <p>Numéro de la carte d'identité nationale : <span id="view-cin" class="field-value">[CIN]</span></p>
-                    <p>Code national de l'étudiant(e) : <span id="view-cne" class="field-value">[CNE]</span></p>
-                    <p>Né(e) le <span id="view-date" class="field-value">[DATE]</span> à <span id="view-lieu" class="field-value">[LIEU]</span> <span class="field-value">(MAROC)</span></p>
+                    <p><span id="view-fullname" class="field-value">&nbsp;</span></p>
+                    <p>&nbsp;Numéro de la carte d'identité nationale : <span id="view-cin" class="field-value">....</span></p>
+                    <p>&nbsp;Code national de l'étudiant (e) : <span id="view-cne" class="field-value">....</span></p>
+                    <p>Né le <span id="view-date" class="field-value">....</span> à <span id="view-lieu" class="field-value">....</span>&nbsp;&nbsp;<strong>(MAROC)</strong></p>
                     <p>Est régulièrement inscrit(e) à l'Ecole Supérieure de Technologie Béni Mellal pour l'année universitaire 2025/2026</p>
-                    <p><span class="field-value">Diplôme :</span> <span id="view-diplome" class="field-value">DUT ....</span></p>
-                    <p><span class="field-value">Année :</span> <span id="view-annee-filiere" class="field-value">[ANNEE] [NOM COMPLET FILIERE]</span></p>
+                    <p><span class="label-underline">Diplôme :</span> <span id="view-diplome">DUT ....</span></p>
+                    <p><span class="label-underline">Année :</span> <span id="view-annee-filiere">2ème année .....</span></p>
                 </div>
 
+                <!-- SIGNATURE -->
                 <div class="doc-footer">
                     <div class="footer-right">
-                        <div class="footer-date">Fait à Béni Mellal, le <span id="today-date">....</span></div>
-                        <div class="footer-signature">Directeur de L'EST</div>
+                        <p>Fait à Béni Mellal, le <span id="today-date"></span></p>
+                        <p>Directeur de L'EST</p>
                     </div>
                 </div>
 
+                <!-- NOTE -->
                 <div class="exemplaire-note">
-                    * Le présent document n’est délivré qu’en un seul exemplaire.<br>
-                    Il appartient à l’étudiant d’en faire des photocopies certifiées conformes.
+                    * Le présent document n'est délivré qu'en un seul exemplaire,<br>
+                    Il appartient à l'étudiant d'en faire des photocopies certifiées conformes.
                 </div>
 
+                <!-- CONTACT -->
                 <div class="doc-contact-info">
-                    <p><span class="contact-bold">Adresse :</span> Ecole Supérieure de Technologie de Beni Mellal -Cité Universitaire M’ghila – Beni Mellal – BP : 23000</p>
-                    <p><span class="contact-bold">Tel :</span> +(212) 523-484-168 <span class="contact-bold">/ Fax :</span> +(212) 523-481-772</p>
+                    <p><span class="contact-bold">Adresse :</span> Ecole Supérieure de Technologie de Beni Mellal -Cité Universitaire M'ghila – Beni Mellal – BP : <strong>23000</strong></p>
+                    <p class="contact-center"><span class="contact-bold">Tel :</span> +(212) 523-484-168 &nbsp;<strong>/</strong>&nbsp; <span class="contact-bold">Fax :</span> +(212) 523-481-772</p>
                 </div>
             </div>
-        </main>
-    </div>
 
-    <script>
-        const filieres = {
-            "GMA": "Génie Mécanique et Automatismes",
-            "GE": "Génie Electrique",
-            "GI": "Génie Informatique",
-            "TI": "Techniques d'Informatique",
-            "TC": "Techniques de Commerce"
-        };
+        </div>
+    </main>
+</div>
 
-        const form = document.getElementById('attestationForm');
-        
-        // Element selectors
-        const inputs = {
-            nom: document.getElementById('nom'),
-            prenom: document.getElementById('prenom'),
-            cin: document.getElementById('cin'),
-            cne: document.getElementById('cne'),
-            date_naissance: document.getElementById('date_naissance'),
-            lieu_naissance: document.getElementById('lieu_naissance'),
-            filiere: document.getElementById('filiere'),
-            annee: document.getElementById('annee')
-        };
+<script>
+    const filieres = {
+        "GMA":  "Génie Mécanique et Automatismes",
+        "GE":   "Génie Electrique",
+        "GI":   "Génie Informatique",
+        "TI":   "Techniques d'Informatique",
+        "TC":   "Techniques de Commerce",
+        "GEII": "Génie Electrique et Informatique Industrielle",
+        "MP":   "Management des Projets"
+    };
 
-        const views = {
-            fullname: document.getElementById('view-fullname'),
-            cin: document.getElementById('view-cin'),
-            cne: document.getElementById('view-cne'),
-            date: document.getElementById('view-date'),
-            lieu: document.getElementById('view-lieu'),
-            diplome: document.getElementById('view-diplome'),
-            anneeFiliere: document.getElementById('view-annee-filiere')
-        };
+    function formatDate(dateStr) {
+        if (!dateStr) return '....';
+        const [y, m, d] = dateStr.split('-');
+        return `${d}/${m}/${y}`;
+    }
 
-        function formatDate(dateStr) {
-            if (!dateStr) return '[DATE]';
-            const date = new Date(dateStr);
-            if (isNaN(date.getTime())) return '[DATE]';
-            const day = String(date.getDate()).padStart(2, '0');
-            const month = String(date.getMonth() + 1).padStart(2, '0');
-            const year = date.getFullYear();
-            return `${day}/${month}/${year}`;
-        }
+    function updatePreview() {
+        const nom    = document.getElementById('nom').value.toUpperCase();
+        const prenom = document.getElementById('prenom').value;
+        const cin    = document.getElementById('cin').value;
+        const cne    = document.getElementById('cne').value;
+        const date   = document.getElementById('date_naissance').value;
+        const lieu   = document.getElementById('lieu_naissance').value.toUpperCase();
+        const fil    = document.getElementById('filiere').value;
+        const annee  = document.getElementById('annee').value;
 
-        function updatePreview() {
-            const nom = inputs.nom.value.toUpperCase() || '[NOM]';
-            const prenom = inputs.prenom.value || '[PRENOM]';
-            views.fullname.textContent = `${nom} ${prenom}`;
-            
-            views.cin.textContent = inputs.cin.value || '[CIN]';
-            views.cne.textContent = inputs.cne.value || '[CNE]';
-            views.date.textContent = formatDate(inputs.date_naissance.value);
-            views.lieu.textContent = inputs.lieu_naissance.value.toUpperCase() || '[LIEU]';
-            
-            const filiereCode = inputs.filiere.value;
-            const filiereFull = filieres[filiereCode] || '....';
-            const annee = inputs.annee.value || '[ANNEE]';
+        document.getElementById('view-fullname').textContent     = (nom || prenom) ? `${nom} ${prenom}`.trim() : '\u00A0';
+        document.getElementById('view-cin').textContent          = cin  || '....';
+        document.getElementById('view-cne').textContent          = cne  || '....';
+        document.getElementById('view-date').textContent         = formatDate(date);
+        document.getElementById('view-lieu').textContent         = lieu || '....';
+        document.getElementById('view-diplome').textContent      = fil  ? `DUT ${fil}` : 'DUT ....';
+        document.getElementById('view-annee-filiere').textContent = fil  ? `${annee} ${filieres[fil]}` : `${annee} .....`;
+    }
 
-            if (filiereCode) {
-                views.diplome.textContent = `DUT ${filiereCode}`;
-                views.anneeFiliere.textContent = `${annee} ${filiereFull}`;
-            } else {
-                views.diplome.textContent = 'DUT ....';
-                views.anneeFiliere.textContent = '[ANNEE] [NOM COMPLET FILIERE]';
-            }
-        }
+    // Listen to all inputs
+    ['nom','prenom','cin','cne','date_naissance','lieu_naissance','filiere','annee']
+        .forEach(id => document.getElementById(id).addEventListener('input', updatePreview));
 
-        // Add event listeners
-        Object.values(inputs).forEach(input => {
-            input.addEventListener('input', updatePreview);
-        });
+    // Today's date in footer
+    const t = new Date();
+    document.getElementById('today-date').textContent =
+        `${String(t.getDate()).padStart(2,'0')}/${String(t.getMonth()+1).padStart(2,'0')}/${t.getFullYear()}`;
 
-        // Set today's date in footer
-        const today = new Date();
-        document.getElementById('today-date').textContent = `${String(today.getDate()).padStart(2, '0')}/${String(today.getMonth() + 1).padStart(2, '0')}/${today.getFullYear()}`;
-
-        // Initial update
-        updatePreview();
-    </script>
+    updatePreview();
+</script>
 </body>
 </html>
-
- 
- 
